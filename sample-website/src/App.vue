@@ -1,35 +1,58 @@
 <template>
-  <div>
-    <Header/>
-    <div id="app">
-    
-      <router-view/>
+  <div class="container">
+    <Header class="header"/>
+    <div class="center-div">
+      <Menu class="menu"/>
+      <div id="app">
+        <router-view/>
+      </div>
     </div>
-    <Footer/>
+    <Footer class="footer"/>
   </div>
 </template>
 
 <script>
 import Header from './components/base/Header'
 import Footer from './components/base/Footer'
+import Menu from './components/base/Menu'
 
 export default {
   name: 'App',
   components: {
     Header,
-    Footer
+    Footer,
+    Menu
   }
 }
 </script>
 
 <style>
+body{
+    margin: 0 !important;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  text-align: left;
   color: #2c3e50;
-  margin-top: 60px;
+  flex:2;
+  background-color: white;
+  width: 70%;
+}
+.menu{
+  width: 30%;
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+
+}
+.center-div{
+  display: inline-flex;
+  background-color: rgb(94, 92, 92);
+  height: 60%;
 }
  .modal {
     display: block;
