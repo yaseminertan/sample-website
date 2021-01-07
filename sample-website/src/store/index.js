@@ -14,11 +14,5 @@ export default new Vuex.Store({
       state.isAuthenticated=true
     },
   },
-  actions: {
-        
-    async login({commit}, email,name){
-        const result={'email':email, 'name':name}
-        commit('setUser',result.data)
-    },
-  }
+ 
 })
