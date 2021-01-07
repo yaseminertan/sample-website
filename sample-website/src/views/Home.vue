@@ -1,13 +1,9 @@
-
-
 <template>
-
-
-<div>
-      <modal v-if="!login" @close="login = true" class='modal'>
-            <button @click='login()'>Save</button>
-      </modal>
-</div>
+  <div>
+        <modal v-if="!login" @close="login = true" class='modal'>
+              <button @click='login()'>Save</button>
+        </modal>
+  </div>
 
 </template>
  

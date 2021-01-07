@@ -11,7 +11,7 @@ export default new Vuex.Store({
   mutations: {
     setUser(state,data){
       state.user=data
-      isAuthenticated=true
+      state.isAuthenticated=true
     },
   },
   actions: {
