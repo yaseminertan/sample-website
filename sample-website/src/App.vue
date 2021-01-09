@@ -29,6 +29,7 @@ export default {
 <style>
 body{
     margin: 0 !important;
+  
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -38,21 +39,23 @@ body{
   color: #2c3e50;
   flex:2;
   background-color: white;
-  width: 70%;
+  width: 80%;
+  padding-left: 10px;
 }
 .menu{
-  width: 30%;
+  width: 20%;
 }
 .container{
   display: flex;
   flex-direction: column;
   height: 100vh;
-
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .center-div{
   display: inline-flex;
   background-color: rgb(94, 92, 92);
-  height: 60%;
+  height: 75%;
 }
  .modal {
     display: block;

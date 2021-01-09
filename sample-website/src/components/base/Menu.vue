@@ -1,19 +1,17 @@
 <template>
     <div>
-        <menu>
+        <nav>
             <ul id='sliderMenu'>
-                <li><router-link to="/contact">Contact</router-link></li>
-                <li></li>
-                <li></li>
+                <li><router-link to="/">Home</router-link></li>
+                <li><router-link to="/contact">Contact Us</router-link></li>
             </ul>
-        </menu>
+        </nav>
     </div>
 </template>
 <style scoped>
-    menu{
-      padding: 0;
-      margin:10px;
- 
+    nav{
+      padding: 0; 
+      padding-left: 20px;
   }
   #sliderMenu{
       padding: 0;

@@ -8,7 +8,7 @@
     background-color:  rgb(94, 92, 92);
     display: flex;
     justify-content: center;
-    height:20%;
+    height:10%;
     padding: 10px;
 }
 </style>

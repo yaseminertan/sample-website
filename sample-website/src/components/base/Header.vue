@@ -1,15 +1,22 @@
 <template>
     <div class="header-container">
-      Header
-      <button @click='modal=true'></button>
-      <div>
+   
+      <button class="button-login" v-if="!isAuth" @click='modal=true'>Login</button>
+      <div class="user-info">
+        {{ $t("message.hello") }}
         {{loginName}}
         {{loginMail}}
       </div>
+      <div class="language">
+        <select v-model="$i18n.locale">
+      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+    </select>
+      </div>
       <modal v-if="modal" @close="modal = false" class='modal'>
+        <button class="button-modal" @click='modal = false'> X</button><br>
         <input v-model="name" placeholder="Name">
         <input v-model="mail" placeholder="E-mail">
-        <button @click='signin()'>Save</button>
+        <button class="button-modal" @click='signin()'>Save</button>
       </modal>
     </div>
 </template>
@@ -26,6 +33,8 @@ export default {
       mail:'',
       loginName:'',
       loginMail:'',
+      isAuth:false,
+      langs: ['TR', 'EN'] 
     }},
   computed: {
     ...mapState(['user']),
@@ -40,12 +49,15 @@ export default {
       }
       this.$store.commit("setUser", params);
       this.modal=false;
+      this.isAuth=true;
       this.loginName=this.name;
       this.loginMail=this.mail;
-    }
+    },
+    
   },
   created(){
     if(this.$store.state.isAuthenticated){
+      this.isAuth=true;
       this.loginName=this.$store.state.user.name;
       this.loginMail=this.$store.state.user.mail;
     }
@@ -53,13 +65,25 @@ export default {
 }
 </script>
 
-<style>
+<style >
+.user-info{
+  color: white;
+}
  .header-container{
    background-color: rgb(94, 92, 92);
-   height: 20%;
+   height: 15%;
    display: flex;
    align-items: center;
-   justify-content: space-between;
+   justify-content: flex-end;
    padding: 10px;
+ }
+ .button-login{
+   background: none;
+   color:white;
+ }
+ .button-modal{
+   background: none;
+  border: 2px solid rgba(128, 128, 128, 0.582);
+  border-radius: 5px;
  }
 </style>
