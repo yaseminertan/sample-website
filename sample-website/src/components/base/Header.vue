@@ -3,7 +3,7 @@
    
       <div v-if="isAuth" class="user-info">
         {{ $t("hello") }}
-        {{loginName}}
+        {{$store.state.user.name}}
        
       </div>
       <button class="button-login" v-if="!isAuth" @click='modal=true'>{{ $t("login") }}</button>
@@ -59,13 +59,7 @@ export default {
     },
     
   },
-  created(){
-    if(this.$store.state.isAuthenticated){
-      this.isAuth=true;
-      this.loginName=this.$store.state.user.name;
-      this.loginMail=this.$store.state.user.mail;
-    }
-  }
+  
 }
 </script>
 

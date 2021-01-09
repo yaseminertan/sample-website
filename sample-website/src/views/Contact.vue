@@ -2,8 +2,8 @@
 <div class="contact-container">
    <h1>{{ $t("contact") }}</h1> 
    <p>{{ $t("title") }}</p>
-   <p>{{ $t("name") }}<label>{{loginName}}</label></p>
-   <p>{{ $t("mail") }}<label>{{loginMail}}</label></p>
+   <p>{{ $t("name") }}<label>{{$store.state.user.name}}</label></p>
+   <p>{{ $t("mail") }}<label>{{$store.state.user.mail}}</label></p>
    <div style="display:flex">{{ $t("phone") }}
    <input placeholder="+905554443322"></div>
    <p></p>
@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 export default {
     name:'Contact',
      data: () => {
@@ -29,18 +30,7 @@ export default {
       loginName:'',
       loginMail:'',
     }},
-    computed(){
- if(this.$store.state.isAuthenticated){
-            this.loginName=this.$store.state.user.name;
-            this.loginMail=this.$store.state.user.mail;
-        }
-    },
-    created(){
-        if(this.$store.state.isAuthenticated){
-            this.loginName=this.$store.state.user.name;
-            this.loginMail=this.$store.state.user.mail;
-        }
-    }
+   
 }
 </script>
 
