@@ -1,8 +1,7 @@
 <template>
   <div>
-        <modal v-if="!login" @close="login = true" class='modal'>
-              <button @click='login()'>Save</button>
-        </modal>
+      <h1> {{ $t("homeTitle") }}</h1>
+       <h4> {{ $t("homeText") }}</h4>
   </div>
 
 </template>
@@ -24,3 +23,12 @@
     ...mapActions(['login'])}
  }
  </script>
+ <style scoped>
+ h1{
+   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+ }
+  h4{
+    text-align:justify;
+    font-weight: normal;
+  }
+ </style>

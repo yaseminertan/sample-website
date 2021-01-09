@@ -29,7 +29,6 @@ export default {
 <style>
 body{
     margin: 0 !important;
-  
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -37,10 +36,11 @@ body{
   -moz-osx-font-smoothing: grayscale;
   text-align: left;
   color: #2c3e50;
-  flex:2;
   background-color: white;
+  padding-left: 20px;
+  padding-right: 20px;
   width: 80%;
-  padding-left: 10px;
+  overflow-y: scroll;
 }
 .menu{
   width: 20%;
@@ -53,15 +53,16 @@ body{
   margin-right: 10%;
 }
 .center-div{
-  display: inline-flex;
-  background-color: rgb(94, 92, 92);
+  background-color: rgb(73, 145, 77);
   height: 75%;
+  display: inline-flex;
+  
 }
  .modal {
     display: block;
     position: absolute;
     width: 200px;
-    margin: 20px;
+    margin-top: 10%;
     padding: 30px;
     background-color: white;
     border-radius: 10px;
@@ -71,5 +72,14 @@ body{
     font-size: 16px;
     z-index: 999;
     transition: opacity 0.3s ease;
+  }
+  button, select{
+    cursor: pointer;
+  }
+  .multiselect__input{
+    width:auto !important;
+  }
+  .multiselect__element{
+    list-style-type: none;
   }
 </style>
