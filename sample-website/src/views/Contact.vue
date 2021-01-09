@@ -1,22 +1,22 @@
 <template>
 <div class="contact-container">
-   <h1>Contact Us</h1> 
-   <p>{{ $t("message.title") }}</p>
-   <p>Name<label>{{loginName}}</label></p>
-   <p>Email<label>{{loginMail}}</label></p>
-   <div style="display:flex">Phone Number 
+   <h1>{{ $t("contact") }}</h1> 
+   <p>{{ $t("title") }}</p>
+   <p>{{ $t("name") }}<label>{{loginName}}</label></p>
+   <p>{{ $t("mail") }}<label>{{loginMail}}</label></p>
+   <div style="display:flex">{{ $t("phone") }}
    <input placeholder="+905554443322"></div>
    <p></p>
-   Country
+   {{ $t("country") }}
    <select>
-       <option id='TR'>Turkey</option>
-       <option id='US'>United States of America</option>
-       <option id='GB'>United Kingdom</option>
-       <option id='DE'>Germany</option>
-       <option id='SE'>Sweden</option>
-       <option id='KE'>Kenya</option>
-       <option id='BR'>Brazil</option>
-       <option id='ZW'>Zimbabwe</option>
+       <option id='TR'>{{ $t("tr") }}</option>
+       <option id='US'>{{ $t("us") }}</option>
+       <option id='GB'>{{ $t("gb") }}</option>
+       <option id='DE'>{{ $t("de") }}</option>
+       <option id='SE'>{{ $t("se") }}</option>
+       <option id='KE'>{{ $t("ke") }}</option>
+       <option id='BR'>{{ $t("br") }}</option>
+       <option id='ZW'>{{ $t("zw") }}</option>
    </select>
 </div>
 </template>
@@ -29,6 +29,12 @@ export default {
       loginName:'',
       loginMail:'',
     }},
+    computed(){
+ if(this.$store.state.isAuthenticated){
+            this.loginName=this.$store.state.user.name;
+            this.loginMail=this.$store.state.user.mail;
+        }
+    },
     created(){
         if(this.$store.state.isAuthenticated){
             this.loginName=this.$store.state.user.name;

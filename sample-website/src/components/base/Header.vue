@@ -1,22 +1,26 @@
 <template>
     <div class="header-container">
    
-      <button class="button-login" v-if="!isAuth" @click='modal=true'>Login</button>
-      <div class="user-info">
-        {{ $t("message.hello") }}
+      <div v-if="isAuth" class="user-info">
+        {{ $t("hello") }}
         {{loginName}}
-        {{loginMail}}
+       
       </div>
+      <button class="button-login" v-if="!isAuth" @click='modal=true'>{{ $t("login") }}</button>
+      
       <div class="language">
         <select v-model="$i18n.locale">
-      <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
-    </select>
+          <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+        </select>
       </div>
+    
+      
+      
       <modal v-if="modal" @close="modal = false" class='modal'>
         <button class="button-modal" @click='modal = false'> X</button><br>
         <input v-model="name" placeholder="Name">
         <input v-model="mail" placeholder="E-mail">
-        <button class="button-modal" @click='signin()'>Save</button>
+        <button class="button-modal" @click='signin()'>{{ $t("save") }}</button>
       </modal>
     </div>
 </template>
@@ -85,5 +89,8 @@ export default {
    background: none;
   border: 2px solid rgba(128, 128, 128, 0.582);
   border-radius: 5px;
+ }
+ .language{
+   margin-left: 10px;
  }
 </style>

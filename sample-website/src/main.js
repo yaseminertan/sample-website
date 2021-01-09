@@ -9,16 +9,45 @@ Vue.use(VueI18n)
 Vue.config.productionTip = false
 const messages = {
   EN: {
-      message: {
-      hello: 'hello world',
-      title: 'title'
-    }
+    hello: 'Hello ',
+    title: 'Title',
+    name:'Name',
+    mail:'Email',
+    phone:'Phone Number',
+    country:'Country',
+    contact:'Contact Us',
+    home:'Home',
+    login:'Login',
+    save:'Save',
+    tr:'Turkey',
+    us:'United States of America',
+    gb:'United Kingdom',
+    de:'Germany',
+    se:'Sweden',
+    ke:'Kenya',
+    br:'Brazil',
+    zw:'Zimbabwe',
+
   },
   TR: {
-      message: {
-      hello: 'Merhaba',
-      title:'Başlık'
-    }
+    hello: 'Merhaba ',
+    title:'Başlık',
+    name:'İsim',
+    mail:'E-posta',
+    phone:'Telefon',
+    country:'Ülke',
+    contact:'İletişim',
+    home:'Anasayfa',
+    login:'Giriş',
+    save:'Kaydet',
+    tr:'Türkiye',
+    us:'Amerika',
+    gb:'İngiltere',
+    de:'Almanya',
+    se:'İsveç',
+    ke:'Kenya',
+    br:'Brezilya',
+    zw:'Zimbabve'
   }
 }
 
