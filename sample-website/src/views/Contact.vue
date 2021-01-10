@@ -59,16 +59,15 @@ export default {
         },
         isEmailValid: function() {
             this.validMail= (this.mail == "") ? false : (this.regMail.test(this.mail)) ? true : false;
-            return this.validMail;
         },
         isPhoneValid: function() {
             this.validPhone= (this.phone == "") ? false : (this.regPhone.test(this.phone)) ? true : false;
-            return this.validPhone;
         },
         send(){
-            if(this.isEmailValid() && this.isPhoneValid())
+            this.isEmailValid()
+            this.isPhoneValid()
+            if(this.validMail && this.validPhone)
             {
-            
                 const info={
                     'title':this.title,
                     'name':this.name,
@@ -122,7 +121,7 @@ export default {
     }
     textarea{
         resize: none;
-        margin-left: 10px;
+        margin-left: 20px;
     }
     .multiselect{
         font-size: small;

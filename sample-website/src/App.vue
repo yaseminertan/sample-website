@@ -2,8 +2,8 @@
   <div class="container">
     <Header class="header"/>
     <div class="center-div">
-      <Menu class="menu"/>
-      <div id="app">
+      <Menu id='menu' class="menu"/>
+      <div id="app" @click='hideMenu()'>
         <router-view/>
       </div>
     </div>
@@ -23,7 +23,11 @@ export default {
     Footer,
     Menu
   },
-  
+  methods:{
+     hideMenu(){
+      document.getElementById('menu').classList.remove('menu-show');
+    }
+  }
 }
 </script>
 
@@ -45,6 +49,7 @@ body{
 }
 .menu{
   width: 20%;
+  background-color: rgb(73, 145, 77);
 }
 .container{
   display: flex;
@@ -54,7 +59,7 @@ body{
   margin-right: 10%;
 }
 .center-div{
-  background-color: rgb(73, 145, 77);
+  
   display: inline-flex;
   
 }
@@ -90,7 +95,26 @@ body{
    font-size: small;
    padding: 3px 20px 3px 20px;
  }
+ .bars{
+    visibility: hidden;
+  }
   @media screen and (min-width: 220px) and (max-width: 767px) {
+    .bars{
+      visibility: visible;
+    }
+    .menu{
+      transform: translateX(-200%);
+      margin-top: -20px;
+      position: absolute;
+      height: 50%;
+      width: 30%;
+    }
+    .center-div{
+     display: flex;
     
+    }
+    .menu-show{
+      transform: translateX(0px);
+    }
   }
 </style>

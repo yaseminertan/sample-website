@@ -18,8 +18,10 @@ export default {
     },
    methods:{
        changePath(){
-           const newPath=this.$route.path.substring(1)
-            this.path=(newPath=="") ? "Sample" : "Sample / "+newPath
+          const newPath=this.$route.path.substring(1)
+          this.path=(newPath=="") ? "Sample" : "Sample / "+newPath
+          document.getElementById('menu').classList.remove('menu-show');
+    
        }
    },
    created(){
@@ -30,7 +32,7 @@ export default {
 <style scoped>
   nav{
     padding: 0; 
-    padding-left: 20px;
+    padding-left: 10px;
   }
   #sliderMenu{
     padding: 0;
@@ -43,9 +45,9 @@ export default {
     display: none;
   }
   #sliderMenu> li{
-    padding: 4px 6px 4px 6px;
+    padding: 2px;
     border-radius: 10px;
-    margin: 2px;
+
     list-style-type: none;
   }
   #sliderMenu>li> a{
@@ -54,7 +56,7 @@ export default {
     margin-left: 5px;
   }
   .path{
-      margin-left: 20px;
+      margin-left: 10px;
   }
-  
+
 </style>

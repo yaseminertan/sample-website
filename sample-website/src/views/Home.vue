@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class='home-container'>
       <h1> {{ $t("homeTitle") }}</h1>
-       <h4> {{ $t("homeText") }}</h4>
+      <h4> {{ $t("homeText") }}</h4>
   </div>
 
 </template>
@@ -27,5 +27,9 @@
   h4{
     text-align:justify;
     font-weight: normal;
+  }
+  .home-container{
+    padding-top:20px;
+    padding-bottom: 20px;
   }
  </style>
