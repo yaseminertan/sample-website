@@ -1,15 +1,15 @@
 <template>
     <div class="header-container">
    
-      <div v-if="isAuth" class="user-info">
+      <div v-if="isAuth" class="user-info"  @click="logout=true">
         {{ $t("hello") }}
-        <span @click="logout=true">{{$store.state.user.name}}</span>
+        <span>{{$store.state.user.name}}</span>
        
       </div>
       <button class="button-login" v-if="!isAuth" @click='modal=true'>{{ $t("login") }}</button>
       
       <div class="language">
-        <select v-model="$i18n.locale">
+        <select v-model="$i18n.locale" @change="changeLanguage()">
           <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
         </select>
       </div>
@@ -75,10 +75,15 @@ export default {
       this.$store.commit("setUser", params);
       this.logout=false;
       this.isAuth=false;
-    }
-    
+    },
+    changeLanguage()
+    {
+      this.$store.commit("setOptions",this._i18n.messages[this._i18n.locale].option);
+   }
   },
-  
+  created(){
+      this.changeLanguage()
+  }
 }
 </script>
 

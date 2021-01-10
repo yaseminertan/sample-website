@@ -1,29 +1,26 @@
 <template>
 <div class="contact-container">
    <h1>{{ $t("contact") }}</h1> 
-   <p>{{ $t("title") }}</p>
-   <p>{{ $t("name") }}<label>{{$store.state.user.name}}</label></p>
-   <p>{{ $t("mail") }}<label>{{$store.state.user.mail}}</label></p>
+   <p>{{ $t("title") }}<input v-model="title"></p>
+   <p>{{ $t("name") }}
+       <label v-if="isAuth">{{$store.state.user.name}}</label>
+        <input id='name' v-model='name' v-if="!isAuth"></p>
+   <p>{{ $t("mail") }}
+       <label v-if="isAuth">{{$store.state.user.mail}}</label>
+        <input id='mail' v-model='mail' v-if="!isAuth">
+        <label style="color:red" v-if="!validMail">{{ $t("mailError") }}</label>
+    </p>
    <div style="display:flex">{{ $t("phone") }}
-   <input placeholder="+905554443322"></div>
+   <input v-model='phone' placeholder="+905554443322"></div>
+   <label style="color:red" v-if="!validPhone">{{ $t("mailPhone") }}</label>
    <p></p>
-   
-   <!-- <select>
-       <option id='TR'>{{ $t("tr") }}</option>
-       <option id='US'>{{ $t("us") }}</option>
-       <option id='GB'>{{ $t("gb") }}</option>
-       <option id='DE'>{{ $t("de") }}</option>
-       <option id='SE'>{{ $t("se") }}</option>
-       <option id='KE'>{{ $t("ke") }}</option>
-       <option id='BR'>{{ $t("br") }}</option>
-       <option id='ZW'>{{ $t("zw") }}</option>
-   </select> -->
    <div style="display:flex">
-       <span style="margin-right:10px">{{ $t("country") }}</span>
-        <multiselect v-model="value" :options="options" :custom-label="nameWithLang" placeholder="Select one" label="name" track-by="name"></multiselect>
-        <pre class="language-json"><code>{{ value  }}</code></pre>
+        <span style="margin-right:10px">{{ $t("country") }}</span>
+        <multiselect class="multiselect" @select="toggleSelected" v-model="value" :options="options" :custom-label="nameWithLang" placeholder="Select one" label="name" track-by="name"></multiselect>
+        <pre class="language-json"><code></code></pre>
     </div>
-   <p class="textarea">{{ $t("text") }} <textarea rows="4" maxlength="250"></textarea></p>
+   <p class="textarea">{{ $t("text") }} 
+       <textarea v-model='text' rows="4" maxlength="250"></textarea></p>
    <button @click='send()'>{{ $t("send") }}</button>
       
 </div>
@@ -36,16 +33,19 @@ export default {
     name:'Contact',
      data: () => {
     return {
-      loginName:'',
-      loginMail:'',
       value:'',
-      options:[
-        { name: 'Turkey', id:'TR' },
-        { name: 'Germany',  id:'DE'  },
-        { name: 'Sweden',  id:'SE' },
-        { name: 'Kenya',  id:'KE'  },
-        { name: 'Brazil', id:'BR'  }
-      ]
+      options:[],
+      isAuth:false,
+      validMail:true,
+      validPhone:true,
+      title:'',
+      name:'',
+      mail:'',
+      phone:'',
+      country:'',
+      text:'',
+      regMail: /^(([^<>()\]\\.,;:\s@"]+(\.[^<>()\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,24}))$/,
+      regPhone:/(([\\+]90?)|([0]?))([ ]?)((\([0-9]{3}\))|([0-9]{3}))([ ]?)([0-9]{3})(\s*[\\-]?)([0-9]{2})(\s*[\\-]?)([0-9]{2})/,
     }},
     components:{
         Multiselect
@@ -54,17 +54,53 @@ export default {
         nameWithLang ({ name }) {
             return `${name}`
         },
+        toggleSelected(value) {
+            this.country=value.id
+        },
+        isEmailValid: function() {
+            this.validMail= (this.mail == "") ? false : (this.regMail.test(this.mail)) ? true : false;
+            return this.validMail;
+        },
+        isPhoneValid: function() {
+            this.validPhone= (this.phone == "") ? false : (this.regPhone.test(this.phone)) ? true : false;
+            return this.validPhone;
+        },
         send(){
-
+            if(this.isEmailValid() && this.isPhoneValid())
+            {
+            
+                const info={
+                    'title':this.title,
+                    'name':this.name,
+                    'mail':this.mail,
+                    'phone':this.phone,
+                    'country':this.country,
+                    'text':this.text
+                }
+                console.log(info)
+            }
         }
+   },
+   created(){
+      this.options=(this.$store['state'].options)
+      this.isAuth=this.$store.state.isAuthenticated
+      this.$store.subscribe((mutation,state) => {
+        this.options=state.options;
+        this.isAuth=this.$store.state.isAuthenticated;
+        if(this.isAuth) 
+        {
+            document.getElementById('name').value='';
+            document.getElementById('mail').value='';
+        }
+      })
    }
 }
 </script>
 
 <style scoped>
-label{
-    margin-left: 10px;
-}
+    label{
+        margin-left: 10px;
+    }
     .contact-container{
         width: 90%;
         height: 90%;
@@ -87,7 +123,10 @@ label{
     textarea{
         resize: none;
         margin-left: 10px;
-        
+    }
+    .multiselect{
+        font-size: small;
+        padding: 3px 20px 3px 20px;
     }
     
 </style>

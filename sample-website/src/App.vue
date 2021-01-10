@@ -22,7 +22,8 @@ export default {
     Header,
     Footer,
     Menu
-  }
+  },
+  
 }
 </script>
 
@@ -40,7 +41,7 @@ body{
   padding-left: 20px;
   padding-right: 20px;
   width: 80%;
-  overflow-y: scroll;
+  overflow-y: hidden;
 }
 .menu{
   width: 20%;
@@ -54,7 +55,6 @@ body{
 }
 .center-div{
   background-color: rgb(73, 145, 77);
-  height: 75%;
   display: inline-flex;
   
 }
@@ -76,10 +76,21 @@ body{
   button, select{
     cursor: pointer;
   }
-  .multiselect__input{
-    width:auto !important;
-  }
-  .multiselect__element{
-    list-style-type: none;
+ .multiselect__input{
+   border: none;
+ }
+ .multiselect__input:focus{
+   outline: 1px solid gray;
+ }
+ .multiselect__element{
+   list-style: none;
+ }
+ .multiselect__single{
+   border:1px solid gray;
+   font-size: small;
+   padding: 3px 20px 3px 20px;
+ }
+  @media screen and (min-width: 220px) and (max-width: 767px) {
+    
   }
 </style>
